@@ -2,7 +2,7 @@ package be.pxl.generics.opdracht1;
 
 import java.util.ArrayList;
 
-public class Team<T> {
+public class Team<T extends Player> {
 	private String name;
 	private int played;
 	private int won;
