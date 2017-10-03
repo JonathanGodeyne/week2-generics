@@ -2,13 +2,13 @@ package be.pxl.generics.opdracht1;
 
 import java.util.ArrayList;
 
-public class Team<T extends Player> {
+public class Team<E extends Player> {
 	private String name;
-	private int played;
-	private int won;
-	private int lost;
-	private int tied;
-	private ArrayList<T> members;
+	private int played=0;
+	private int won = 0;
+	private int lost = 0;
+	private int tied = 0;
+	private ArrayList<E> members = new ArrayList<E>();
 
 	public Team(String name) {
 		this.name = name;
@@ -54,16 +54,18 @@ public class Team<T extends Player> {
 		this.tied = tied;
 	}
 
-	public ArrayList<T> getMembers() {
+	public ArrayList<E> getMembers() {
 		return members;
 	}
 
-	public void setMembers(ArrayList<T> members) {
+	public void setMembers(ArrayList<E> members) {
 		this.members = members;
 	}
 
-	public void addPlayer(T player) {
+	public void addPlayer(E player) {
+		if(!members.contains(player)) {
 		members.add(player);
+		}
 	}
 
 	public int numberOfPlayers() {
@@ -71,17 +73,28 @@ public class Team<T extends Player> {
 		return result;
 	}
 
-	public void matchResult(Team<T> opponent, int ourScore, int theirScore) {
-		if (ourScore == theirScore && ourScore != 0 && theirScore != 0) {
+	public void matchResult(Team<E> opponent, int ourScore, int theirScore) {
+		this.played++;
+		if(opponent !=null) {
+			opponent.setPlayed(opponent.getPlayed()+1);
+		}
+		
+		if (ourScore == theirScore) {
 			this.tied++;
-			opponent.tied++;
+			if(opponent !=null) {
+				opponent.tied++;
+			}
 		} else {
 			if (ourScore > theirScore) {
 				this.won++;
-				opponent.lost++;
+				if(opponent !=null) {
+					opponent.lost++;
+				}
 			} else {
 				this.lost++;
-				opponent.won++;
+				if(opponent !=null) {
+					opponent.won++;
+				}
 			}
 		}
 	}
