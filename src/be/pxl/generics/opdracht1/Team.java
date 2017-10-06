@@ -2,13 +2,13 @@ package be.pxl.generics.opdracht1;
 
 import java.util.ArrayList;
 
-public class Team<E extends Player> {
+public class Team<T extends Player> {
 	private String name;
 	private int played=0;
 	private int won = 0;
 	private int lost = 0;
 	private int tied = 0;
-	private ArrayList<E> members = new ArrayList<E>();
+	private ArrayList<T> members = new ArrayList<T>();
 
 	public Team(String name) {
 		this.name = name;
@@ -54,15 +54,15 @@ public class Team<E extends Player> {
 		this.tied = tied;
 	}
 
-	public ArrayList<E> getMembers() {
+	public ArrayList<T> getMembers() {
 		return members;
 	}
 
-	public void setMembers(ArrayList<E> members) {
+	public void setMembers(ArrayList<T> members) {
 		this.members = members;
 	}
 
-	public void addPlayer(E player) {
+	public void addPlayer(T player) {
 		if(!members.contains(player)) {
 		members.add(player);
 		}
@@ -73,30 +73,43 @@ public class Team<E extends Player> {
 		return result;
 	}
 
-	public void matchResult(Team<E> opponent, int ourScore, int theirScore) {
-		this.played++;
-		if(opponent !=null) {
-			opponent.setPlayed(opponent.getPlayed()+1);
+	public void matchResult(Team<T> opponent, int ourScore, int theirScore) {
+		if(ourScore>theirScore) {
+			won++;
+		}else if (ourScore==theirScore) {
+			tied++;
+		}else {
+			lost++;
 		}
+		played++;
 		
-		if (ourScore == theirScore) {
-			this.tied++;
-			if(opponent !=null) {
-				opponent.tied++;
-			}
-		} else {
-			if (ourScore > theirScore) {
-				this.won++;
-				if(opponent !=null) {
-					opponent.lost++;
-				}
-			} else {
-				this.lost++;
-				if(opponent !=null) {
-					opponent.won++;
-				}
-			}
-		}
+		if(opponent!=null) {
+			opponent.matchResult(null, theirScore, ourScore);			
+		}		
+		
+//		this.played++;
+//		if(opponent !=null) {
+//			opponent.setPlayed(getPlayed()+1);
+//		}
+//		
+//		if (ourScore == theirScore) {
+//			this.tied++;
+//			if(opponent !=null) {
+//				opponent.tied++;
+//			}
+//		} else {
+//			if (ourScore > theirScore) {
+//				this.won++;
+//				if(opponent !=null) {
+//					opponent.lost++;
+//				}
+//			} else {
+//				this.lost++;
+//				if(opponent !=null) {
+//					opponent.won++;
+//				}
+//			}
+//		}
 	}
 
 	public int ranking() {

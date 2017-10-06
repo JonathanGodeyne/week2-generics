@@ -1,7 +1,7 @@
 package be.pxl.generics.opdracht2;
 
 public class Goochelaar {
-	private Hoed<? extends Dier> hoed;
+	private Hoed<Dier> hoed;
 	
 	public void verstopDier() {
 		if (Math.random() <= 0.5) {

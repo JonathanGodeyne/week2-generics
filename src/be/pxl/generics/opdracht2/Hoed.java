@@ -1,23 +1,22 @@
 package be.pxl.generics.opdracht2;
 
-public class Hoed<T> {
+public class Hoed<T extends Dier> {
 
-	static int COUNT;
-	Dier dier;
+	private int COUNT;
+	private T dier;
 
-	public Hoed(Dier dier) {
+	public Hoed(T dier) {
 		this.dier = dier;
 		COUNT = 0;
 	}
 
-	public Dier kijk() {
+	public T kijk() {
 		if (COUNT == 0) {
 			COUNT++;
 			return null;
 		} else {
 			COUNT++;
 			return dier;
-		}		
+		}
 	}
-
 }

@@ -4,9 +4,11 @@ public class LeagueTest {
 	
 	public static void main(String[] args) {
 		Team<SoccerPlayer> ourTeam = new Team<>("OurTeam");
+		//Team<BaseballPlayer> baseTeam = new Team<>("base");
 		Team<SoccerPlayer> opponentTeam = new Team<>("OpponentTeam");
 		Team<SoccerPlayer> otherOpponentTeam = new Team<>("OOT");
 		League<SoccerPlayer> soccerLeague = new League<>();
+		//soccerLeague.addTeam(baseTeam);
 		soccerLeague.addTeam(ourTeam);
 		soccerLeague.addTeam(opponentTeam);
 		soccerLeague.addTeam(otherOpponentTeam);
